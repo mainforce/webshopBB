@@ -1,0 +1,25 @@
+.filtrera {
+  width: 100%;
+  max-width: 1000px; /* Maximal bredd för .filtrera */
+  padding-bottom: 1rem;
+  display: flex;
+  justify-content: space-evenly; /* Centrerar innehåll horisontellt inom .filtrera */
+
+  .sortera-btn button {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: none;
+    background-color: $secondary-color;
+    color: white;
+
+    &:hover {
+      background-color: $main-color;
+      transition: 0.3s;
+    }
+  }
+
+  #category {
+    max-height: 30px;
+  }
+}

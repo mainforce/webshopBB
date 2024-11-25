@@ -1,0 +1,87 @@
+#order-form {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 1.5rem; /* Mellan rader */
+}
+
+.form-group,
+fieldset {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 450px;
+}
+
+.form-group label {
+  margin: 0 0 5px 5px;
+}
+
+fieldset {
+  padding: 1rem;
+  border-radius: 20px;
+
+  legend {
+    margin-bottom: -1rem;
+    padding: 10px;
+    font-size: $medium-fontsize;
+  }
+
+  label {
+    font-size: $main-fontsize;
+  }
+}
+
+#order-form input {
+  padding: 0.7rem;
+  background-color: #f2e5d959;
+  border-radius: 15px;
+  border-style: groove;
+  border: none;
+}
+
+.buttons-order {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: 1rem;
+  margin-bottom: 2rem;
+
+  button {
+    text-transform: uppercase;
+    width: 200px;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    outline: none;
+    padding: 12px;
+    border: 4px solid white;
+
+    &:hover {
+      background-color: $main-color;
+    }
+  }
+
+  #clear-order {
+    background-color: red;
+    width: auto;
+
+    &:hover {
+      background-color: white;
+      color: red;
+      border: 4px solid red;
+    }
+  }
+}
+
+// Betalning
+#card-insert,
+#invoice-insert {
+  display: none;
+  flex-direction: column;
+
+  label {
+    margin-top: 1rem;
+  }
+}
