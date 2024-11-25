@@ -333,6 +333,70 @@ input[type=number] {
   max-height: 30px;
 }
 
+.cart-item {
+  display: flex; /* Flexbox för att arrangera innehåll på en rad */
+  justify-content: space-between; /* Lämnar utrymme mellan informationen och bilden */
+  align-items: center; /* Vertikal centering av innehållet */
+  margin-top: 1rem; /* Mellanrum mellan varukorgsobjekten */
+  background-color: rgb(247, 244, 244);
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+}
+
+.cart-item-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.cart-item-info {
+  flex: 1; /* Gör så att info-sektionen tar upp allt till vänster */
+  padding-right: 15px; /* Lite utrymme mellan texten och bilden */
+}
+
+.cart-item-name,
+.cart-item-amount,
+.cart-item-price {
+  margin: 2px 0; /* Marginaler för att separera varje rad */
+  font-family: "Host Grotesk";
+  font-size: 1rem;
+}
+
+.cart-item-name {
+  font-family: "Bebas Neue";
+  font-size: 1.4rem;
+  text-transform: uppercase;
+  font-weight: 100;
+  color: #ff886e;
+}
+
+.thumb-img img {
+  padding-top: 5px;
+  width: auto;
+  max-height: 100px; /* Begränsa bildens höjd */
+  object-fit: cover; /* För att hålla bildens proportioner utan att sträcka den */
+}
+
+.cart-total {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  margin: 1.2rem 0 0 8px;
+}
+.cart-total h4 {
+  font-family: "Bebas Neue";
+  font-size: 1.4rem;
+  font-weight: 100;
+}
+.cart-total span {
+  color: #ff886e;
+  margin-left: 10px;
+  font-family: "Bebas Neue";
+  font-size: 1.4rem;
+  font-weight: 100;
+}
+
 * {
   margin: 0;
   padding: 0;
