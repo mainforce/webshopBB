@@ -1,0 +1,53 @@
+.modal-shopping-cart {
+  display: none;
+  position: absolute;
+  align-items: center;
+  top: 70px; /* Justera detta för att styra vertikal position */
+  left: 50%; /* Sätt vänsterkant till 50% av föräldraelementets bredd */
+  width: 95%; /* Modalens bredd är 100% av föräldraelementets bredd */
+  height: auto;
+  background-color: white;
+  z-index: 20;
+  padding: 1rem;
+
+  border: 2px solid black;
+  border-radius: 10px;
+
+  /* Centrera modalen horisontellt med hjälp av transform */
+  transform: translateX(
+    -50%
+  ); /* Flytta modalen tillbaka med 50% av dess bredd */
+}
+
+.modal-content {
+  display: flex;
+  flex-direction: column; /* Lägger allt i en vertikal layout */
+  position: relative; /* Lägg till positionering om nödvändigt */
+  width: 100%;
+
+  #close {
+    align-self: flex-end;
+    cursor: pointer;
+    background-color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+  }
+}
+
+#checkout-btn {
+  width: 200px;
+  height: 60px;
+  margin: 0 auto;
+  padding-top: 1rem;
+  font-family: $secondary-font;
+  font-size: $large-fontsize;
+  background-color: white;
+  color: $secondary-color;
+  border: none;
+  cursor: pointer;
+
+  &:hover {
+    color: black;
+  }
+}

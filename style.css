@@ -1,0 +1,462 @@
+@charset "UTF-8";
+.required {
+  margin-right: 0.3rem;
+  font-size: 1.2rem;
+  color: red;
+}
+
+.fa-star,
+.fa-star-half-stroke {
+  font-size: 1rem;
+  color: #ff886e;
+}
+
+.shopping-cart-btn {
+  cursor: pointer;
+  background-color: #f2e5d9;
+  border-style: none;
+  color: white;
+  display: flex; /* Gör att SVG-pilen och texten ligger bredvid varandra */
+  align-items: center; /* Vertikal justering av text och pil */
+  position: relative; /* Lägg till relativ position för att kunna påverka SVG:n */
+  /* Animation för att få pilen att hoppa upp och ned */
+}
+.shopping-cart-btn:hover .arrow path {
+  stroke: #ffffff; /* Färgen på pilen ändras till vit */
+  animation: jump 0.6s ease-in-out infinite; /* Animering som får pilen att hoppa */
+}
+.shopping-cart-btn .arrow {
+  transition: transform 0.3s ease; /* Smidig övergång när pilen hoppar */
+}
+@keyframes jump {
+  0% {
+    transform: translateY(0); /* Ursprunglig position */
+  }
+  50% {
+    transform: translateY(-5px); /* Hoppar uppåt */
+  }
+  100% {
+    transform: translateY(0); /* Återgår till ursprunglig position */
+  }
+}
+
+.fa-solid.fa-cart-shopping {
+  color: #ff886e;
+  font-size: 2rem;
+}
+
+.fa-solid.fa-cart-shopping:hover {
+  color: white;
+}
+
+.modal-shopping-cart {
+  display: none;
+  position: absolute;
+  align-items: center;
+  top: 70px; /* Justera detta för att styra vertikal position */
+  left: 50%; /* Sätt vänsterkant till 50% av föräldraelementets bredd */
+  width: 95%; /* Modalens bredd är 100% av föräldraelementets bredd */
+  height: auto;
+  background-color: white;
+  z-index: 20;
+  padding: 1rem;
+  border: 2px solid black;
+  border-radius: 10px;
+  /* Centrera modalen horisontellt med hjälp av transform */
+  transform: translateX(-50%); /* Flytta modalen tillbaka med 50% av dess bredd */
+}
+
+.modal-content {
+  display: flex;
+  flex-direction: column; /* Lägger allt i en vertikal layout */
+  position: relative; /* Lägg till positionering om nödvändigt */
+  width: 100%;
+}
+.modal-content #close {
+  align-self: flex-end;
+  cursor: pointer;
+  background-color: white;
+  border: none;
+  width: 40px;
+  height: 40px;
+}
+
+#checkout-btn {
+  width: 200px;
+  height: 60px;
+  margin: 0 auto;
+  padding-top: 1rem;
+  font-family: "Bebas Neue";
+  font-size: 1.4rem;
+  background-color: white;
+  color: #ff886e;
+  border: none;
+  cursor: pointer;
+}
+#checkout-btn:hover {
+  color: black;
+}
+
+#order-form {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 1.5rem; /* Mellan rader */
+}
+
+.form-group,
+fieldset {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 450px;
+}
+
+.form-group label {
+  margin: 0 0 5px 5px;
+}
+
+fieldset {
+  padding: 1rem;
+  border-radius: 20px;
+}
+fieldset legend {
+  margin-bottom: -1rem;
+  padding: 10px;
+  font-size: 1.2rem;
+}
+fieldset label {
+  font-size: 1rem;
+}
+
+#order-form input {
+  padding: 0.7rem;
+  background-color: rgba(242, 229, 217, 0.3490196078);
+  border-radius: 15px;
+  border-style: groove;
+  border: none;
+}
+
+.buttons-order {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+.buttons-order button {
+  text-transform: uppercase;
+  width: 200px;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  outline: none;
+  padding: 12px;
+  border: 4px solid white;
+}
+.buttons-order button:hover {
+  background-color: #f2e5d9;
+}
+.buttons-order #clear-order {
+  background-color: red;
+  width: auto;
+}
+.buttons-order #clear-order:hover {
+  background-color: white;
+  color: red;
+  border: 4px solid red;
+}
+
+#card-insert,
+#invoice-insert {
+  display: none;
+  flex-direction: column;
+}
+#card-insert label,
+#invoice-insert label {
+  margin-top: 1rem;
+}
+
+.products {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.product-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Gör så att innehållet kan justeras vertikalt */
+  align-items: center; /* Centrerar allt innehåll horisontellt */
+  padding: 2rem;
+  background-color: white;
+  width: 330px;
+  border-radius: 10px;
+  margin: 1rem;
+}
+
+h3 {
+  font-size: 2.2rem;
+  font-family: "Bebas Neue";
+  font-weight: 100;
+  text-transform: uppercase;
+  text-align: center;
+  padding-bottom: 1rem;
+}
+
+.size-price {
+  display: flex;
+  padding: 0.6rem;
+  justify-content: space-between; /* Detta gör så att h3 och p i .size-price är placerade på varsin kant */
+  width: 100%; /* Se till att den tar upp hela bredden i produktkortet */
+  max-height: 45px;
+}
+
+.size-price h3 {
+  font-size: 1.8rem;
+}
+
+.size-price p {
+  font-family: "Bebas Neue";
+  font-size: 1.8rem;
+}
+
+p {
+  padding-left: 0.6rem;
+}
+
+.add-amount {
+  display: flex;
+  justify-content: center;
+  padding-top: 1rem;
+  width: 250px;
+  justify-content: space-between;
+}
+.add-amount input {
+  width: 150px;
+  height: 40px;
+  text-align: center;
+  border-radius: 50px;
+  border: 2px solid #ff886e;
+}
+.add-amount button {
+  background-color: #ff886e;
+  color: white;
+  border: 2px solid #ff886e;
+  border-radius: 50px;
+  width: 40px;
+  height: 40px;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* För Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.carousel {
+  position: relative;
+  width: 100%;
+  max-width: 250px; /* Anpassa till din layout */
+  height: auto;
+  margin: auto;
+  overflow: hidden; /* Döljer överskjutande bilder */
+}
+
+.carousel-images {
+  display: flex;
+  align-items: center; /* Centrerar bilder vertikalt */
+  transition: transform 0.5s ease-in-out; /* Mjuk övergång vid byte av bild */
+}
+
+.carousel-images img {
+  width: 100%; /* Bilden fyller karusellen */
+  height: auto;
+  flex-shrink: 0;
+  transition: transform 0.5s ease-in-out, box-shadow 0.3s ease-in-out;
+  border: none;
+}
+
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  color: white;
+  border: none;
+  padding: 1px;
+  min-width: 20px;
+  min-height: 20px;
+  cursor: pointer;
+  z-index: 10;
+}
+.carousel-btn:hover {
+  background-color: white;
+  color: #ff886e;
+}
+
+.prev-btn {
+  left: 5%;
+}
+
+.next-btn {
+  right: 5%;
+}
+
+.filtrera {
+  width: 100%;
+  max-width: 1000px; /* Maximal bredd för .filtrera */
+  padding-bottom: 1rem;
+  display: flex;
+  justify-content: space-evenly; /* Centrerar innehåll horisontellt inom .filtrera */
+}
+.filtrera .sortera-btn button {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: none;
+  background-color: #ff886e;
+  color: white;
+}
+.filtrera .sortera-btn button:hover {
+  background-color: #f2e5d9;
+  transition: 0.3s;
+}
+.filtrera #category {
+  max-height: 30px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Host Grotesk";
+}
+
+body {
+  background-color: #f2e5d9;
+}
+
+.wrapper {
+  background-color: #f2e5d9;
+  min-height: 100vh;
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+header {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.heading {
+  padding: 1rem;
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+}
+
+.search-cart-row {
+  position: relative;
+  padding: 1rem;
+  width: 100%;
+  max-width: 500px; /* Maximal bredd för föräldraelementet */
+  padding-top: 1rem;
+  flex-direction: row;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.search {
+  width: 100%;
+  background-color: white;
+  max-width: 500px;
+  border-radius: 25px;
+  display: flex;
+  align-items: center;
+}
+
+.search input[type=search] {
+  width: 100%;
+  color: #ff886e;
+  margin-right: 10px;
+  border: none;
+  border-radius: 25px;
+  outline: none;
+  padding: 12px;
+}
+
+.search button {
+  padding: 12px;
+  background-color: #ff886e;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+}
+
+/* Vid hover-effekt för knappen, valfritt */
+.search button:hover {
+  background-color: #f2e5d9;
+  transition: 0.3s;
+}
+
+main {
+  padding: 1rem;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centrerar vertikalt i main */
+  align-items: center; /* Centrerar horisontellt i main */
+}
+
+aside {
+  display: flex;
+  justify-content: center;
+}
+aside .checkout {
+  margin: 0 2rem;
+  display: none;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  max-width: 1000px;
+}
+aside .checkout .order-conf {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2rem;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 1000px;
+  background-color: white;
+}
+aside h2 {
+  padding: 1rem 0;
+  font-size: 1.8rem;
+  color: white;
+  text-align: center;
+}
+
+@media screen and (min-width: 768px) {
+  .buttons-order {
+    position: relative;
+  }
+  .buttons-order #clear-order {
+    position: absolute;
+    right: 1px;
+    top: 50px;
+  }
+}

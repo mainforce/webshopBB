@@ -1,0 +1,119 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: $main-font;
+}
+
+body {
+  background-color: $main-color;
+}
+
+.wrapper {
+  background-color: $main-color;
+  min-height: 100vh;
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+header {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.heading {
+  padding: 1rem;
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+}
+
+.search-cart-row {
+  position: relative;
+  padding: 1rem;
+  width: 100%;
+  max-width: 500px; /* Maximal bredd för föräldraelementet */
+  padding-top: 1rem;
+  flex-direction: row;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.search {
+  width: 100%;
+  background-color: white;
+  max-width: 500px;
+  border-radius: 25px;
+  display: flex;
+  align-items: center;
+}
+
+.search input[type="search"] {
+  width: 100%;
+  color: $secondary-color;
+  margin-right: 10px;
+  border: none;
+  border-radius: 25px;
+  outline: none;
+  padding: 12px;
+}
+
+.search button {
+  padding: 12px;
+  background-color: $secondary-color;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+}
+
+/* Vid hover-effekt för knappen, valfritt */
+.search button:hover {
+  background-color: $main-color;
+  transition: 0.3s;
+}
+
+main {
+  padding: 1rem;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centrerar vertikalt i main */
+  align-items: center; /* Centrerar horisontellt i main */
+}
+
+aside {
+  display: flex;
+  justify-content: center;
+
+  .checkout {
+    margin: 0 2rem;
+    display: none;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    max-width: 1000px;
+
+    .order-conf {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 2rem;
+      border-radius: 8px;
+      width: 100%;
+      max-width: 1000px;
+      background-color: white;
+    }
+  }
+
+  h2 {
+    padding: 1rem 0;
+    font-size: $largest-fontsize;
+    color: white;
+    text-align: center;
+  }
+}

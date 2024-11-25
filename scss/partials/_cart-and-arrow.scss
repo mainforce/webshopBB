@@ -1,0 +1,40 @@
+.shopping-cart-btn {
+  cursor: pointer;
+  background-color: $main-color;
+  border-style: none;
+  color: white;
+  display: flex; /* Gör att SVG-pilen och texten ligger bredvid varandra */
+  align-items: center; /* Vertikal justering av text och pil */
+  position: relative; /* Lägg till relativ position för att kunna påverka SVG:n */
+
+  &:hover .arrow path {
+    stroke: #ffffff; /* Färgen på pilen ändras till vit */
+    animation: jump 0.6s ease-in-out infinite; /* Animering som får pilen att hoppa */
+  }
+
+  .arrow {
+    transition: transform 0.3s ease; /* Smidig övergång när pilen hoppar */
+  }
+
+  /* Animation för att få pilen att hoppa upp och ned */
+  @keyframes jump {
+    0% {
+      transform: translateY(0); /* Ursprunglig position */
+    }
+    50% {
+      transform: translateY(-5px); /* Hoppar uppåt */
+    }
+    100% {
+      transform: translateY(0); /* Återgår till ursprunglig position */
+    }
+  }
+}
+
+.fa-solid.fa-cart-shopping {
+  color: $secondary-color;
+  font-size: 2rem;
+}
+
+.fa-solid.fa-cart-shopping:hover {
+  color: white;
+}

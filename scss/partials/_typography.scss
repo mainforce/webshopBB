@@ -1,0 +1,11 @@
+.required {
+  margin-right: 0.3rem;
+  font-size: $medium-fontsize;
+  color: red;
+}
+
+.fa-star,
+.fa-star-half-stroke {
+  font-size: $main-fontsize;
+  color: $secondary-color;
+}

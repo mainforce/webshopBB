@@ -1,0 +1,10 @@
+@import "scss/partials/_partials.scss";
+@import "scss/layout/_base";
+
+@media screen and (min-width: 768px) {
+  @import "scss/layout/_tablet";
+}
+
+@media screen and (min-width: 1025px) {
+  @import "scss/layout/_desktop";
+}
