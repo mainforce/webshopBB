@@ -155,11 +155,129 @@ const products = [
 ];
 
 // -------------------------------------------------------
+// ---------- FUNKTION FÖR ATT VISA PRODUKTER ------------
+// -------------------------------------------------------
+
+function visaProdukter() {
+  const productsList = document.querySelector("#products");
+  productsList.innerHTML = "";
+
+  products.forEach((product) => {
+    const productCard = document.createElement("section");
+    productCard.classList.add("product-card");
+
+    productCard.innerHTML = `
+      <h3>${product.name}</h3>
+      <div class="images carousel">
+        <button class="carousel-btn prev-btn">❮</button>
+        <div class="carousel-images">
+          ${product.images
+            .map(
+              (image) => `
+            <img src="${image.url}" alt="${image.alt}" width="${image.width}" height="${image.height}">
+          `
+            )
+            .join("")}
+        </div>
+        <button class="carousel-btn next-btn">❯</button>
+      </div>
+      
+      <div class="size-price">
+        <h3>${product.size}</h3>
+        <p>${product.price} kr</p>
+      </div>
+      <p>Rating: ${
+        Array(Math.floor(product.rating))
+          .fill('<i class="fa-solid fa-star"></i>')
+          .join("") +
+        (product.rating % 1 !== 0
+          ? '<i class="fa-solid fa-star-half-stroke"></i>'
+          : "")
+      }</p>
+
+      <div class="add-amount">
+        <button class="minska" id="minska${
+          product.id
+        }"><i class="fa-solid fa-minus"></i></button>
+        <input type="number" min="0" value="${product.amount}" id="input-${
+      product.id
+    }">
+        <button class="addera" id="addera${
+          product.id
+        }"><i class="fa-solid fa-plus"></i></button>
+      </div>
+      <div class="sum-product">
+        <h4 id="total-${product.id}">Totalt: ${
+      product.price * product.amount
+    }kr</h4>
+      </div>
+    `;
+
+    productsList.appendChild(productCard);
+  });
+}
+
+visaProdukter();
+
+// -------------------------------------------------------
+// --------------- ÖKA ANTAL MED KNAPPEN -----------------
+// -------------------------------------------------------
+function increaseProductCount(productId) {
+  const input = document.querySelector(`#input-${productId}`);
+  const product = products.find((item) => item.id == productId);
+  if (input && product) {
+    product.amount += 1;
+    input.value = product.amount;
+
+    adderaTillVarukorg(productId, 1);
+
+    summaProdukt(productId);
+  }
+}
+
+// -------------------------------------------------------
+// -------------- MINSKA ANTAL MED KNAPPEN ---------------
+// -------------------------------------------------------
+
+function decreaseProductCount(productId) {
+  const input = document.querySelector(`#input-${productId}`);
+  const product = products.find((item) => item.id == productId);
+  if (input && product && product.amount > 0) {
+    product.amount -= 1;
+    input.value = product.amount;
+
+    // Uppdatera varukorgen
+    adderaTillVarukorg(productId, -1);
+
+    summaProdukt(productId);
+  }
+}
+
+// -------------------------------------------------------
+// -------- EVENTLYSSNARE KNAPPARNA ÖKA/MINSKA -----------
+// -------------------------------------------------------
+document.querySelector("#products").addEventListener("click", function (e) {
+  const button = e.target.closest("button");
+
+  if (button) {
+    const productId = button.id.match(/\d+/)[0];
+
+    if (button.id.startsWith("addera")) {
+      increaseProductCount(productId);
+    } else if (button.id.startsWith("minska")) {
+      decreaseProductCount(productId);
+    }
+  }
+});
+
+// -------------------------------------------------------
 // --------------- MODALRUTA FÖR VARUKORG ----------------
 // -------------------------------------------------------
+
 shoppingCartBtn.addEventListener("click", (event) => {
   event.stopPropagation();
   modalShoppingCart.style.display = "flex";
+  visaVarukorg();
 });
 
 // Stäng modalrutan (CLOSE)
@@ -183,6 +301,139 @@ checkoutBtn.addEventListener("click", () => {
 
   // Scrollas mjukt till checkout
   checkout.scrollIntoView({ behavior: "smooth" });
+});
+
+// -------------------------------------------------------
+// ------------------ ARRAY FÖR VARUKORGEN ---------------
+// -------------------------------------------------------
+let varukorg = [];
+
+function adderaTillVarukorg(id, amount) {
+  id = Number(id);
+  const existingProductIndex = varukorg.findIndex(
+    (product) => product.id === id
+  );
+
+  const product = products.find((item) => item.id === id);
+
+  if (!product) {
+    console.error(`Produkt med id ${id} kunde inte hittas.`);
+    return;
+  }
+
+  if (existingProductIndex !== -1) {
+    varukorg[existingProductIndex].amount += amount;
+  } else {
+    varukorg.push({
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      amount: amount,
+    });
+  }
+
+  visaVarukorg();
+}
+
+// -------------------------------------------------------
+// ------------------ LISTA I VARKUKORGEN ----------------
+// -------------------------------------------------------
+function visaVarukorg() {
+  const varukorgLista = document.querySelector("#cart");
+
+  varukorgLista.innerHTML = "";
+
+  // Debugging för att kontrollera innehållet i varukorgen
+  console.log("Innehåll i varukorg:", varukorg);
+
+  varukorg.forEach((item) => {
+    const product = products.find((p) => p.id === item.id);
+    if (product && product.images.length > 0) {
+      const image = product.images[0];
+
+      varukorgLista.innerHTML += `
+        <div class="cart-item">
+          <div class="cart-item-details">
+            <div class="cart-item-info">
+              <h4 class="cart-item-name">${item.name}</h4>
+              <h4 class="cart-item-amount">Antal: ${item.amount}</h4> 
+              <h4 class="cart-item-price">Pris: ${
+                item.price * item.amount
+              } kr</h4>
+            </div>
+            <div class="thumb-img">
+              <img src="${image.url}" alt="${image.alt}" width="${
+        image.width
+      }" height="${image.height}">
+            </div>
+          </div>
+        </div>
+      `;
+    }
+  });
+
+  const totalPrice = varukorg.reduce(
+    (total, item) => total + item.price * item.amount,
+    0
+  );
+  varukorgLista.innerHTML += ` 
+    <div class="cart-total">
+      <h4>Totalt: </h4>
+      <span>${totalPrice} kr</span>
+    </div>`;
+}
+
+// -------------------------------------------------------
+// ----------------- TOTALPRIS I VARUKORG ----------------
+// -------------------------------------------------------
+function summaProdukt(productId) {
+  const product = products.find((item) => item.id == productId);
+  const totalElement = document.querySelector(`#total-${productId}`);
+  if (product && totalElement) {
+    totalElement.textContent = `Totalt: ${product.price * product.amount} kr`;
+  }
+}
+
+// -------------------------------------------------------
+// ----------------- SORTERINGSFUNKTIONER ----------------
+// -------------------------------------------------------
+
+//Variabeldeklarationer
+const sorteraNamn = document.getElementById("sort-name");
+const sorteraPris = document.getElementById("sort-price");
+const sorteraRating = document.getElementById("sort-rating");
+
+const sortByName = (a, b) => {
+  if (a.name < b.name) return -1;
+  if (a.name > b.name) return 1;
+  return 0;
+};
+
+const sortByPrice = (a, b) => {
+  if (a.price < b.price) return -1;
+  if (a.price > b.price) return 1;
+  return 0;
+};
+
+const sortByRating = (a, b) => {
+  if (a.rating < b.rating) return 1;
+  if (a.rating > b.rating) return -1;
+  return 0;
+};
+
+sorteraNamn.addEventListener("click", () => {
+  products.sort(sortByName);
+  visaProdukter();
+});
+
+sorteraPris.addEventListener("click", () => {
+  products.sort(sortByPrice);
+  visaProdukter();
+});
+
+sorteraRating.addEventListener("click", () => {
+  products.sort(sortByRating);
+  visaProdukter();
 });
 
 // -------------------------------------------------------
