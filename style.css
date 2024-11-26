@@ -13,7 +13,7 @@
 
 .shopping-cart-btn {
   cursor: pointer;
-  background-color: #f2e5d9;
+  background-color: #e8dbd0;
   border-style: none;
   color: white;
   display: flex; /* Gör att SVG-pilen och texten ligger bredvid varandra */
@@ -47,6 +47,19 @@
 
 .fa-solid.fa-cart-shopping:hover {
   color: white;
+}
+
+#quantity {
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.727);
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 22px;
+  right: 40px;
+  top: 14px;
+  font-size: 1rem;
 }
 
 .modal-shopping-cart {
@@ -116,16 +129,17 @@ fieldset {
   margin: 0 0 5px 5px;
 }
 
-fieldset {
+.payment {
   padding: 1rem;
   border-radius: 20px;
+  display: none;
 }
-fieldset legend {
+.payment legend {
   margin-bottom: -1rem;
   padding: 10px;
   font-size: 1.2rem;
 }
-fieldset label {
+.payment label {
   font-size: 1rem;
 }
 
@@ -156,7 +170,7 @@ fieldset label {
   border: 4px solid white;
 }
 .buttons-order button:hover {
-  background-color: #f2e5d9;
+  background-color: #e8dbd0;
 }
 .buttons-order #clear-order {
   background-color: red;
@@ -326,7 +340,7 @@ input[type=number] {
   color: white;
 }
 .filtrera .sortera-btn button:hover {
-  background-color: #f2e5d9;
+  background-color: #e8dbd0;
   transition: 0.3s;
 }
 .filtrera #category {
@@ -405,11 +419,11 @@ input[type=number] {
 }
 
 body {
-  background-color: #f2e5d9;
+  background-color: #e8dbd0;
 }
 
 .wrapper {
-  background-color: #f2e5d9;
+  background-color: #e8dbd0;
   min-height: 100vh;
   width: 100%;
   max-width: 1440px;
@@ -472,7 +486,7 @@ header {
 
 /* Vid hover-effekt för knappen, valfritt */
 .search button:hover {
-  background-color: #f2e5d9;
+  background-color: #e8dbd0;
   transition: 0.3s;
 }
 

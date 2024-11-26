@@ -17,9 +17,10 @@ fieldset {
   margin: 0 0 5px 5px;
 }
 
-fieldset {
+.payment {
   padding: 1rem;
   border-radius: 20px;
+  display: none;
 
   legend {
     margin-bottom: -1rem;

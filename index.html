@@ -35,11 +35,16 @@
 
                 <button id="shopping-cart-btn" class="shopping-cart-btn">
                     <i class="fa-solid fa-cart-shopping"></i>
+
                     <svg class="arrow" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24">
                         <path d="M12 16L8 12M12 16L16 12" stroke="#ff886e" stroke-width="2" fill="none" />
                         <!-- Tack Google för SVG-hjälp! -->
                     </svg>
                 </button>
+                <div id="quantity">
+
+                </div>
+
 
                 <!-- Modalruta -->
                 <div id="modal-shopping-cart" class="modal-shopping-cart">
@@ -149,6 +154,8 @@
                                 placeholder="E-postadress" required>
                         </div>
 
+                        <h4>Vänligen fyll i alla fält ovan och godkänn nedan för att komma vidare till betalning.</h4>
+
                         <!-- Checkboxar -->
                         <div class="checkbox">
                             <div>
@@ -165,7 +172,7 @@
                         </div>
 
                         <!-- Val betalsätt -->
-                        <fieldset>
+                        <fieldset class="payment">
                             <legend aria-label="Betalsätt" required><span class="required">*</span>Välj betalsätt
                             </legend>
                             <div>
@@ -182,7 +189,7 @@
                             <div id="card-insert">
                                 <label for="cardNumber">Kortnummer:</label>
                                 <input type="text" id="cardNumber" name="cardNumber" placeholder="1234 5678 9012 3456"
-                                    pattern="\d{4} \d{4} \d{4} \d{4}"
+                                    pattern="(\d{4} ?){4}"
                                     title="Ange ett giltigt kortnummer i formatet XXXX XXXX XXXX XXXX" maxlength="19"
                                     required />
 

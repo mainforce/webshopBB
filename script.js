@@ -1,13 +1,8 @@
-// Hitta element som behövs
 const shoppingCartBtn = document.getElementById("shopping-cart-btn");
 const modalShoppingCart = document.getElementById("modal-shopping-cart");
 const closeBtn = document.getElementById("close");
 const checkoutBtn = document.getElementById("checkout-btn");
 const checkout = document.getElementById("checkout");
-const invoicePayment = document.getElementById("payment-invoice");
-const cardPayment = document.getElementById("payment-card");
-const invoicePaymentInsert = document.getElementById("invoice-insert");
-const cardPaymentInsert = document.getElementById("card-insert");
 
 // -------------------------------------------------------
 // --------------- ARRAY FÖR PRODUKTERNA -----------------
@@ -24,13 +19,13 @@ const products = [
     category: "poster",
     images: [
       {
-        url: "assets/images/products/Poster1-Img1.jpg",
+        url: "assets/images/products/testing2.jpg",
         width: 500,
         height: 753,
         alt: "Bild på Poster 1, Bild 1",
       },
       {
-        url: "assets/images/products/Poster1-Img2.jpg",
+        url: "assets/images/products/testing1.jpg",
         width: 500,
         height: 750,
         alt: "Bild på Poster 1, Bild 2",
@@ -199,7 +194,7 @@ function visaProdukter() {
         <button class="minska" id="minska${
           product.id
         }"><i class="fa-solid fa-minus"></i></button>
-        <input type="number" min="0" value="${product.amount}" id="input-${
+        <input type="number" min="0" value="${product.amount}" id="antal-${
       product.id
     }">
         <button class="addera" id="addera${
@@ -223,15 +218,15 @@ visaProdukter();
 // --------------- ÖKA ANTAL MED KNAPPEN -----------------
 // -------------------------------------------------------
 function increaseProductCount(productId) {
-  const input = document.querySelector(`#input-${productId}`);
+  const antal = document.querySelector(`#antal-${productId}`);
   const product = products.find((item) => item.id == productId);
-  if (input && product) {
+  if (antal && product) {
     product.amount += 1;
-    input.value = product.amount;
-
-    adderaTillVarukorg(productId, 1);
+    antal.value = product.amount;
 
     summaProdukt(productId);
+    addQuantity(productId);
+    varukorgContent(productId, 1);
   }
 }
 
@@ -240,17 +235,49 @@ function increaseProductCount(productId) {
 // -------------------------------------------------------
 
 function decreaseProductCount(productId) {
-  const input = document.querySelector(`#input-${productId}`);
+  const antal = document.querySelector(`#antal-${productId}`);
   const product = products.find((item) => item.id == productId);
-  if (input && product && product.amount > 0) {
+  if (antal && product && product.amount > 0) {
     product.amount -= 1;
-    input.value = product.amount;
-
-    // Uppdatera varukorgen
-    adderaTillVarukorg(productId, -1);
+    antal.value = product.amount;
 
     summaProdukt(productId);
+    addQuantity(productId);
+    varukorgContent(productId, -1);
   }
+}
+
+// -------------------------------------------------------
+// ------------------ ARRAY FÖR VARUKORGEN ---------------
+// -------------------------------------------------------
+let varukorg = [];
+
+function varukorgContent(id, amount) {
+  id = Number(id);
+  const existingProductIndex = varukorg.findIndex(
+    (product) => product.id === id
+  );
+
+  const product = products.find((item) => item.id === id);
+
+  if (!product) {
+    console.error(`Produkt med id ${id} kunde inte hittas.`);
+    return;
+  }
+
+  if (existingProductIndex !== -1) {
+    varukorg[existingProductIndex].amount += amount;
+  } else {
+    varukorg.push({
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      amount: amount,
+    });
+  }
+
+  visaVarukorg();
+  addQuantity();
 }
 
 // -------------------------------------------------------
@@ -296,60 +323,26 @@ document.addEventListener("click", (event) => {
 });
 
 checkoutBtn.addEventListener("click", () => {
-  // Gör checkout synlig
   checkout.style.display = "flex";
 
-  // Scrollas mjukt till checkout
   checkout.scrollIntoView({ behavior: "smooth" });
 });
-
-// -------------------------------------------------------
-// ------------------ ARRAY FÖR VARUKORGEN ---------------
-// -------------------------------------------------------
-let varukorg = [];
-
-function adderaTillVarukorg(id, amount) {
-  id = Number(id);
-  const existingProductIndex = varukorg.findIndex(
-    (product) => product.id === id
-  );
-
-  const product = products.find((item) => item.id === id);
-
-  if (!product) {
-    console.error(`Produkt med id ${id} kunde inte hittas.`);
-    return;
-  }
-
-  if (existingProductIndex !== -1) {
-    varukorg[existingProductIndex].amount += amount;
-  } else {
-    varukorg.push({
-      id: product.id,
-      name: product.name,
-      price: product.price,
-      amount: amount,
-    });
-  }
-
-  visaVarukorg();
-}
 
 // -------------------------------------------------------
 // ------------------ LISTA I VARKUKORGEN ----------------
 // -------------------------------------------------------
 function visaVarukorg() {
   const varukorgLista = document.querySelector("#cart");
-
   varukorgLista.innerHTML = "";
 
-  // Debugging för att kontrollera innehållet i varukorgen
-  console.log("Innehåll i varukorg:", varukorg);
+  let totalPrice = 0;
 
   varukorg.forEach((item) => {
     const product = products.find((p) => p.id === item.id);
     if (product && product.images.length > 0) {
       const image = product.images[0];
+
+      totalPrice += item.price * item.amount;
 
       varukorgLista.innerHTML += `
         <div class="cart-item">
@@ -372,10 +365,7 @@ function visaVarukorg() {
     }
   });
 
-  const totalPrice = varukorg.reduce(
-    (total, item) => total + item.price * item.amount,
-    0
-  );
+  // Visa det totala priset i varukorgen
   varukorgLista.innerHTML += ` 
     <div class="cart-total">
       <h4>Totalt: </h4>
@@ -383,9 +373,7 @@ function visaVarukorg() {
     </div>`;
 }
 
-// -------------------------------------------------------
-// ----------------- TOTALPRIS I VARUKORG ----------------
-// -------------------------------------------------------
+// Totalpris per product
 function summaProdukt(productId) {
   const product = products.find((item) => item.id == productId);
   const totalElement = document.querySelector(`#total-${productId}`);
@@ -394,11 +382,25 @@ function summaProdukt(productId) {
   }
 }
 
+// Totala antalet produkter
+function addQuantity() {
+  const totalQuantity = varukorg.reduce(
+    (total, item) => total + item.amount,
+    0
+  );
+  const quantityElement = document.querySelector("#quantity");
+
+  quantity.innerHTML = "";
+
+  if (quantityElement) {
+    quantityElement.textContent = totalQuantity;
+  }
+}
+
 // -------------------------------------------------------
 // ----------------- SORTERINGSFUNKTIONER ----------------
 // -------------------------------------------------------
 
-//Variabeldeklarationer
 const sorteraNamn = document.getElementById("sort-name");
 const sorteraPris = document.getElementById("sort-price");
 const sorteraRating = document.getElementById("sort-rating");
@@ -437,17 +439,123 @@ sorteraRating.addEventListener("click", () => {
 });
 
 // -------------------------------------------------------
+// --------------------- KARUSELLEN ----------------------
+// -------------------------------------------------------
+const productCards = document.querySelectorAll(".product-card");
+
+productCards.forEach((productCard, productIndex) => {
+  const carouselImages = productCard.querySelectorAll(".carousel-images img");
+  const carouselContainer = productCard.querySelector(".carousel-images");
+  const prevBtn = productCard.querySelector(".prev-btn");
+  const nextBtn = productCard.querySelector(".next-btn");
+
+  if (!carouselContainer || !prevBtn || !nextBtn || carouselImages.length === 0)
+    return;
+
+  let currentIndex = 0;
+
+  function updateCarousel() {
+    const offset = -currentIndex * 100;
+    carouselContainer.style.transform = `translateX(${offset}%)`;
+  }
+
+  // Gå till föregående bild
+  prevBtn.addEventListener("click", () => {
+    currentIndex =
+      currentIndex === 0 ? carouselImages.length - 1 : currentIndex - 1;
+    updateCarousel();
+  });
+
+  // Gå till nästa bild
+  nextBtn.addEventListener("click", () => {
+    currentIndex = (currentIndex + 1) % carouselImages.length;
+    updateCarousel();
+  });
+});
+
+// -------------------------------------------------------
 // --------------- ORDERBEKRÄFTELSE/FORMULÄR -------------
 // -------------------------------------------------------
 
-// Visa kortinfo
+const form = document.getElementById("order-form");
+const submitButton = form.querySelector(".confirm");
+const payment = document.querySelector(".payment");
+const invoicePayment = document.getElementById("payment-invoice");
+const cardPayment = document.getElementById("payment-card");
+const invoicePaymentInsert = document.getElementById("invoice-insert");
+const cardPaymentInsert = document.getElementById("card-insert");
+
+function valideraKundinfo() {
+  const fields = [
+    form.querySelector("#first-name"),
+    form.querySelector("#last-name"),
+    form.querySelector("#street-address"),
+    form.querySelector("#postal-code"),
+    form.querySelector("#city"),
+    form.querySelector("#mobile"),
+    form.querySelector("#email"),
+    form.querySelector("#data-approval"),
+  ];
+  return fields.every((field) => field.checkValidity());
+}
+
+function visaBetalningsInfo() {
+  if (valideraKundinfo()) {
+    payment.style.display = "flex";
+  } else {
+    payment.style.display = "none";
+  }
+
+  const isPaymentValid = valideraBetalmetod();
+
+  if (valideraKundinfo() && isPaymentValid) {
+    submitButton.disabled = false;
+    submitButton.style.backgroundColor = "green";
+    submitButton.style.cursor = "pointer";
+  } else {
+    submitButton.disabled = true;
+    submitButton.style.backgroundColor = "grey";
+    submitButton.style.cursor = "not-allowed";
+  }
+}
+
+function valideraKortinfo() {
+  const cardNumber = form.querySelector("#cardNumber");
+  const expiryDate = form.querySelector("#expiryDate");
+  const cvc = form.querySelector("#cvc");
+  return (
+    cardNumber.checkValidity() &&
+    expiryDate.checkValidity() &&
+    cvc.checkValidity()
+  );
+}
+
+function valideraFakturaData() {
+  const personnummer = form.querySelector("#personnummer");
+  return personnummer.checkValidity();
+}
+
+function valideraBetalmetod() {
+  if (cardPayment.checked) {
+    return valideraKortData();
+  } else if (invoicePayment.checked) {
+    return valideraFakturaData();
+  }
+  return false;
+}
+
 cardPayment.addEventListener("click", () => {
   cardPaymentInsert.style.display = "flex";
   invoicePaymentInsert.style.display = "none";
+  visaBetalningsInfo();
 });
 
-// Visa fakturainfo
 invoicePayment.addEventListener("click", () => {
   invoicePaymentInsert.style.display = "flex";
   cardPaymentInsert.style.display = "none";
+  visaBetalningsInfo();
 });
+
+form.addEventListener("input", visaBetalningsInfo);
+
+visaBetalningsInfo();
