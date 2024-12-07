@@ -1,25 +1,32 @@
-.filtrera {
+.filter {
   width: 100%;
-  max-width: 1000px; /* Maximal bredd för .filtrera */
-  padding-bottom: 1rem;
+  max-width: 600px;
   display: flex;
-  justify-content: space-evenly; /* Centrerar innehåll horisontellt inom .filtrera */
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 1rem;
 
-  .sortera-btn button {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
+  h3 {
+    padding: 0 0 1rem 0;
+  }
+  .sort {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    gap: 1rem;
+  }
+
+  .sort-btn,
+  .sort-category {
+    background-color: $main-color;
     border: none;
-    background-color: $secondary-color;
-    color: white;
-
-    &:hover {
-      background-color: $main-color;
-      transition: 0.3s;
-    }
+    width: 200px;
+    font-family: $secondary-font;
+    font-size: 1.2rem;
   }
+}
 
-  #category {
-    max-height: 30px;
-  }
+.sort-btn {
+  margin-bottom: 0.5rem;
 }

@@ -3,29 +3,28 @@
   background-color: $main-color;
   border-style: none;
   color: white;
-  display: flex; /* Gör att SVG-pilen och texten ligger bredvid varandra */
-  align-items: center; /* Vertikal justering av text och pil */
-  position: relative; /* Lägg till relativ position för att kunna påverka SVG:n */
+  display: flex;
+  align-items: center;
+  position: relative;
 
   &:hover .arrow path {
-    stroke: #ffffff; /* Färgen på pilen ändras till vit */
-    animation: jump 0.6s ease-in-out infinite; /* Animering som får pilen att hoppa */
+    stroke: #ffffff;
+    animation: jump 0.6s ease-in-out infinite;
   }
 
   .arrow {
-    transition: transform 0.3s ease; /* Smidig övergång när pilen hoppar */
+    transition: transform 0.3s ease;
   }
 
-  /* Animation för att få pilen att hoppa upp och ned */
   @keyframes jump {
     0% {
-      transform: translateY(0); /* Ursprunglig position */
+      transform: translateY(0);
     }
     50% {
-      transform: translateY(-5px); /* Hoppar uppåt */
+      transform: translateY(-5px);
     }
     100% {
-      transform: translateY(0); /* Återgår till ursprunglig position */
+      transform: translateY(0);
     }
   }
 }
@@ -40,6 +39,7 @@
 }
 
 #quantity {
+  display: none;
   position: absolute;
   background-color: rgba(255, 255, 255, 0.727);
   width: 20px;
@@ -50,4 +50,32 @@
   right: 40px;
   top: 14px;
   font-size: 1rem;
+}
+
+#cart {
+  position: relative;
+
+  #deleteCart {
+    position: absolute;
+    bottom: -50px;
+    right: 1px;
+    width: 26px;
+    height: 26px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    background-color: white;
+
+    button {
+      cursor: pointer;
+      background-color: white;
+      border: none;
+    }
+
+    .delete-cart {
+      font-size: 1.5rem;
+      color: $secondary-color;
+    }
+  }
 }

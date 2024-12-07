@@ -2,9 +2,9 @@
   display: none;
   position: absolute;
   align-items: center;
-  top: 70px; /* Justera detta för att styra vertikal position */
-  left: 50%; /* Sätt vänsterkant till 50% av föräldraelementets bredd */
-  width: 95%; /* Modalens bredd är 100% av föräldraelementets bredd */
+  top: 70px;
+  left: 50%;
+  width: 95%;
   height: auto;
   background-color: white;
   z-index: 20;
@@ -13,16 +13,13 @@
   border: 2px solid black;
   border-radius: 10px;
 
-  /* Centrera modalen horisontellt med hjälp av transform */
-  transform: translateX(
-    -50%
-  ); /* Flytta modalen tillbaka med 50% av dess bredd */
+  transform: translateX(-50%);
 }
 
 .modal-content {
   display: flex;
-  flex-direction: column; /* Lägger allt i en vertikal layout */
-  position: relative; /* Lägg till positionering om nödvändigt */
+  flex-direction: column;
+  position: relative;
   width: 100%;
 
   #close {

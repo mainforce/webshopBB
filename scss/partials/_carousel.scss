@@ -1,16 +1,16 @@
 .carousel {
   position: relative;
   width: 100%;
-  max-width: 250px; /* Anpassa till din layout */
+  max-width: 250px;
   height: auto;
   margin: auto;
-  overflow: hidden; /* Döljer överskjutande bilder */
+  overflow: hidden;
 }
 
 .carousel-images {
   display: flex;
-  align-items: center; /* Centrerar bilder vertikalt */
-  transition: transform 0.5s ease-in-out; /* Mjuk övergång vid byte av bild */
+  align-items: center;
+  transition: transform 0.5s ease-in-out;
 }
 
 .carousel-images img {
@@ -26,9 +26,9 @@
   top: 50%;
   background-color: rgba(255, 255, 255, 0.1);
   border-radius: 50%;
-  color: white;
+  color: black;
   border: none;
-  padding: 1px;
+  padding: 10px;
   min-width: 20px;
   min-height: 20px;
   cursor: pointer;
