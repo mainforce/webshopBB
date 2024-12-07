@@ -94,13 +94,13 @@ const productsArray = [
     category: "poster",
     images: [
       {
-        url: "assets/images/products/Veep-Poster2.jpg",
+        url: "assets/images/products/Veep-Poster.jpg",
         width: 500,
         height: 753,
         alt: "Framed Veep poster hanging on a wall.",
       },
       {
-        url: "assets/images/products/Veep-Poster.jpg",
+        url: "assets/images/products/Veep-Poster2.jpg",
         width: 500,
         height: 753,
         alt: "Close-up of Veep Poster.",
@@ -117,13 +117,13 @@ const productsArray = [
     category: "mug",
     images: [
       {
-        url: "assets/images/products/veep-mug1.jpg",
+        url: "assets/images/products/Veep-Mug.jpg",
         width: 500,
         height: 753,
         alt: "Veep Mug standing on a kitchen counter.",
       },
       {
-        url: "assets/images/products/veep-mug2.jpg",
+        url: "assets/images/products/Veep-Mug2.jpg",
         width: 500,
         height: 753,
         alt: "Close-up of Veep Mug design.",
@@ -140,13 +140,13 @@ const productsArray = [
     category: "poster",
     images: [
       {
-        url: "assets/images/products/parks-rec-poster2.jpg",
+        url: "assets/images/products/Parks-Poster.jpg",
         width: 500,
         height: 753,
         alt: "Framed Parks and Rec poster hanging on a wall.",
       },
       {
-        url: "assets/images/products/parks-rec-poster.jpg",
+        url: "assets/images/products/Parks-Poster2.jpg",
         width: 500,
         height: 753,
         alt: "Close-up of Parks and Rec Poster.",
@@ -163,13 +163,13 @@ const productsArray = [
     category: "mug",
     images: [
       {
-        url: "assets/images/products/parks-mug.jpg",
+        url: "assets/images/products/Parks-Mug.jpg",
         width: 500,
         height: 753,
         alt: "Parks and Rec Mug standing on a kitchen counter.",
       },
       {
-        url: "assets/images/products/parks-mug2.jpg",
+        url: "assets/images/products/Parks-Mug2.jpg",
         width: 500,
         height: 500,
         alt: "Close-up of Parks and Rec Mug design.",
