@@ -1,0 +1,119 @@
+.order-form {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  .timer-container {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+
+    p {
+      font-size: 1.8rem;
+      font-family: $secondary-font;
+      color: $secondary-color;
+    }
+  }
+}
+.checkout {
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: row;
+  position: relative;
+
+  .form-group,
+  fieldset {
+    display: flex;
+    justify-content: start;
+    flex-direction: column;
+    width: 100%;
+    max-width: 450px;
+  }
+
+  .form-group label {
+    margin: 0 0 5px 5px;
+  }
+
+  .payment {
+    padding: 1rem;
+    border-radius: 20px;
+
+    legend {
+      margin-bottom: -1rem;
+      padding: 10px;
+      font-size: $medium-fontsize;
+    }
+
+    label {
+      font-size: $main-fontsize;
+      padding: 0 0 0 0.5rem;
+    }
+  }
+}
+
+#order-form input {
+  padding: 0.7rem;
+  background-color: #f2e5d959;
+  border-radius: 15px;
+  border-style: groove;
+  border: none;
+}
+
+.buttons-order {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: 1rem;
+  margin-bottom: 2rem;
+
+  button {
+    text-transform: uppercase;
+    width: 200px;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    outline: none;
+    padding: 12px;
+    border: 4px solid white;
+
+    &:hover {
+      background-color: $main-color;
+    }
+  }
+
+  .clear-form {
+    cursor: pointer;
+    background-color: red;
+    width: auto;
+
+    &:hover {
+      background-color: white;
+      color: red;
+    }
+  }
+}
+
+// Betalning
+#insert-invoice-info,
+#insert-card-info {
+  display: none;
+  flex-direction: column;
+
+  label {
+    margin-top: 1rem;
+  }
+}
+
+.checkbox-div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
+  .checkbox {
+    display: flex;
+    gap: 2rem;
+    justify-content: space-between;
+  }
+}

@@ -1,0 +1,80 @@
+.products {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.product-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem;
+  background-color: white;
+  width: 330px;
+  border-radius: 10px;
+  margin: 1rem;
+}
+
+h3 {
+  font-size: $xxl-fontsize;
+  font-family: $secondary-font;
+  font-weight: 100;
+  text-transform: uppercase;
+  text-align: center;
+  padding-bottom: 1rem;
+}
+
+.size-price {
+  display: flex;
+  padding: 0.6rem;
+  justify-content: space-between;
+  width: 100%;
+  max-height: 45px;
+}
+
+.size-price h3 {
+  font-size: $largest-fontsize;
+}
+
+.size-price p {
+  font-family: $secondary-font;
+  font-size: $largest-fontsize;
+}
+
+.add-amount {
+  display: flex;
+  justify-content: center;
+  padding-top: 1rem;
+  width: 250px;
+  justify-content: space-between;
+
+  input {
+    width: 150px;
+    height: 40px;
+    text-align: center;
+    border-radius: 50px;
+    border: 2px solid $secondary-color;
+  }
+
+  button {
+    background-color: $secondary-color;
+    color: white;
+    border: 2px solid $secondary-color;
+    border-radius: 50px;
+    width: 40px;
+    height: 40px;
+  }
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* För Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}

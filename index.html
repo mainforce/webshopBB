@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="sv">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Binge & Buy</title>
+    <link rel="preload" href="style.css" as="style">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="assets/icons/favicon2.ico" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Host+Grotesk:ital,wght@0,300..800;1,300..800&display=swap"
+        rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+
+
+</head>
+
+<body>
+    <div class="wrapper">
+        <header>
+            <!-- Rubrik -->
+            <img class="heading" src="assets/images/BingeBuyWhite.png" width="500" height="225"
+                alt="Logotyp med texten Binge & Buy i versaler">
+
+
+            <div class="search-cart-row">
+                <!-- Sökruta -->
+                <form action="/search" method="get" class="search">
+                    <input type="search" name="query" placeholder="Sök här" aria-label="Sökfält">
+                    <button type="submit" aria-label="Utför sökning">Sök</button>
+                </form>
+
+                <button id="shopping-cart-btn" class="shopping-cart-btn" aria-label="Tryck för att öppna varukorgen">
+                    <i class="fa-solid fa-cart-shopping"></i>
+
+                    <svg class="arrow" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24">
+                        <path d="M12 16L8 12M12 16L16 12" stroke="#ff886e" stroke-width="2" fill="none" />
+                        <!-- Tack Google för SVG-hjälp! -->
+                    </svg>
+                </button>
+                <div id="quantity">
+
+                </div>
+
+
+                <!-- Modalruta -->
+                <div id="modal-shopping-cart" class="modal-shopping-cart">
+                    <div class="modal-content">
+                        <button id="close" aria-label="Tryck för att stänga varukorgen">
+                            <svg width="30" height="30" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M6 18L18 6M6 6L18 18" stroke="#ff886e" stroke-width="3" fill="none" />
+                            </svg></button>
+                        <div id="cart"></div>
+                        <button id="checkout-btn" aria-label="Tryck för att komma till beställningsformuläret">Till
+                            betalning</button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <div class="filter">
+                <h3>Sortera efter:</h3>
+                <div class="sort">
+                    <select class="sort-btn">
+                        <option id="sort-name">Namn (A-Ö)</button>
+                        <option id="sort-price">Pris (lägst till högst)</button>
+                        <option id="sort-rating">Rating (högst till lägst)</button>
+                    </select>
+
+                    <select class="sort-category" id="category">
+                        <option id="everything" value="everything">Allt</option>
+                        <option id="posters" value="posters">Posters</option>
+                        <option id="mugs" value="mugs">Muggar</option>
+                        <option id="clothes" value="clothes">Kläder</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="products" id="products">
+            </div>
+        </main>
+
+
+        <aside>
+            <div class="checkout" id="checkout">
+                <h2>Beställningsöversikt</h2>
+                <div class="order-info" id="order-info">
+                </div>
+                <div class="order-conf">
+                    <form class="order-form" id="order-form" action="/submit-order" method="post">
+                        <div class="timer-container" id="timer-container">
+                            <p id="timer">Tid kvar: 15:00</p>
+                        </div>
+                        <!-- Förnamn -->
+                        <div class="form-group">
+                            <label for="first-name"><span class="required">*</span>Förnamn: </label>
+                            <input type="text" id="first-name" name="first_name" aria-label="Förnamn"
+                                placeholder="Förnamn" required>
+                        </div>
+
+                        <!-- Efternamn -->
+                        <div class="form-group">
+                            <label for="last-name"><span class="required">*</span>Efternamn: </label>
+                            <input type="text" id="last-name" name="last_name" aria-label="Efternamn"
+                                placeholder="Efternamn" required>
+                        </div>
+
+                        <!-- Adress (gata) -->
+                        <div class="form-group">
+                            <label for="street-address"><span class="required">*</span>Adress: </label>
+                            <input type="text" id="street-address" name="street_address" aria-label="Adress (gata)"
+                                placeholder="Din gatuadress" required>
+                        </div>
+
+                        <!-- Postnummer -->
+                        <div class="form-group">
+                            <label for="postal-code"><span class="required">*</span>Postnummer: </label>
+                            <input type="text" id="postal-code" name="postal_code" aria-label="Postnummer"
+                                placeholder="Ditt postnummer" required>
+                        </div>
+
+                        <!-- Postort -->
+                        <div class="form-group">
+                            <label for="city"><span class="required">*</span>Postort:</label>
+                            <input type="text" id="city" name="city" aria-label="Postort" placeholder="Postort"
+                                required>
+                        </div>
+
+                        <!-- Portkod -->
+                        <div class="form-group">
+                            <label for="door-code">Ev. portkod:</label>
+                            <input type="text" id="door-code" name="door_code" aria-label="Eventuell portkod"
+                                placeholder="Portkod, om det behövs">
+                        </div>
+
+                        <!-- Telefon (mobil) -->
+                        <div class="form-group">
+                            <label for="mobile"><span class="required">*</span>Telefon (mobil): </label>
+                            <input type="tel" id="mobile" name="mobile" aria-label="Telefon (mobil)"
+                                placeholder="Mobilnummer" required>
+                        </div>
+
+                        <!-- E-postadress -->
+                        <div class="form-group">
+                            <label for="email"><span class="required">*</span>E-postadress: </label>
+                            <input type="email" id="email" name="email" aria-label="E-postadress"
+                                placeholder="E-postadress" required>
+                        </div>
+
+                        <h4>Vänligen fyll i alla fält ovan och godkänn nedan för att komma vidare till betalning.</h4>
+
+                        <!-- Checkboxar -->
+                        <div class="checkbox-div">
+                            <div class="checkbox">
+                                <label for="data-approval">Jag godkänner behandling av
+                                    mina personuppgifter: <span class="required">*</span></label>
+                                <input type="checkbox" id="data-approval" name="data_approval"
+                                    aria-label="Godkännande av behandling av personuppgifter" required>
+                            </div>
+                            <div class="checkbox">
+                                <label for="newsletter">Jag vill prenumerera på nyhetsbrevet:</label>
+                                <input type="checkbox" id="newsletter" name="newsletter"
+                                    aria-label="Beställning av nyhetsbrev" checked>
+                            </div>
+                        </div>
+
+                        <!-- Val betalsätt -->
+                        <fieldset class="payment">
+                            <legend aria-label="Betalsätt" required>Betalning
+                            </legend>
+                            <div id="card-btn">
+                                <input type="radio" id="payment-card" name="payment_method" value="card"
+                                    aria-label="Betala med kort" autocomplete="off">
+                                <label for="payment-card">Kort</label>
+                            </div>
+                            <div id="invoice-btn">
+                                <input type="radio" id="payment-invoice" name="payment_method" value="invoice"
+                                    aria-label="Betala med faktura">
+                                <label for="payment-invoice">Faktura</label>
+                            </div>
+
+                            <div id="insert-card-info">
+                                <label for="cardNo">Kortnummer:</label>
+                                <input type="text" id="cardNo" name="cardNo" placeholder="1234 5678 9012 3456"
+                                    pattern="(\d{4} ?){4}"
+                                    title="Ange ett giltigt kortnummer i formatet XXXX XXXX XXXX XXXX" maxlength="19"
+                                    required />
+
+                                <!-- Utgångsdatum -->
+                                <label for="expDate">Utgångsdatum (MM/ÅÅ):</label>
+                                <input type="text" id="expDate" name="expDate" placeholder="MM/ÅÅ"
+                                    pattern="(0[1-9]|1[0-2])\/\d{2}" title="Ange ett giltigt datum i formatet MM/ÅÅ"
+                                    required />
+
+                                <!-- CVC -->
+                                <label for="cvc">CVC:</label>
+                                <input type="text" id="cvc" name="cvc" placeholder="123" pattern="\d{3}"
+                                    title="Ange en giltig CVC-kod (3 siffror)" maxlength="3" required />
+                            </div>
+
+                            <div id="insert-invoice-info">
+                                <label for="personal-id">Personnummer (ÅÅMMDD-XXXX):</label>
+                                <input type="text" id="personal-id" name="personal-id" placeholder="ÅÅMMDD-1234"
+                                    pattern="\d{6}-?\d{4}"
+                                    title="Ange ett giltigt personnummer i formatet ÅÅMMDD-XXXX eller ÅÅMMDDXXXX"
+                                    required />
+                            </div>
+                        </fieldset>
+
+                        <div class="buttons-order">
+                            <button class="confirm" type="submit" aria-label="Skicka beställning" disabled>Bekräfta
+                                beställning</button>
+                            <button id="clear-form" class="clear-form" type="button" title="Rensa formuläret"
+                                aria-label="Rensa forumläret">Rensa forumlär</button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+
+        </aside>
+        <footer>
+            <!-- Kontaktinformation -->
+        </footer>
+        <script src="script.js" async></script>
+
+    </div>
+</body>
+
+</html>
