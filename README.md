@@ -1,2 +1,0 @@
-# webshopBB
-Testing testing
