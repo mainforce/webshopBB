@@ -8,8 +8,8 @@
 .product-card {
   display: flex;
   flex-direction: column;
-  justify-content: space-between; /* Gör så att innehållet kan justeras vertikalt */
-  align-items: center; /* Centrerar allt innehåll horisontellt */
+  justify-content: space-between;
+  align-items: center;
   padding: 2rem;
   background-color: white;
   width: 330px;
@@ -29,8 +29,8 @@ h3 {
 .size-price {
   display: flex;
   padding: 0.6rem;
-  justify-content: space-between; /* Detta gör så att h3 och p i .size-price är placerade på varsin kant */
-  width: 100%; /* Se till att den tar upp hela bredden i produktkortet */
+  justify-content: space-between;
+  width: 100%;
   max-height: 45px;
 }
 
@@ -41,10 +41,6 @@ h3 {
 .size-price p {
   font-family: $secondary-font;
   font-size: $largest-fontsize;
-}
-
-p {
-  padding-left: 0.6rem;
 }
 
 .add-amount {

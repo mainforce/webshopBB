@@ -33,7 +33,6 @@ header {
 
 .search-cart-row {
   position: relative;
-  padding: 1rem;
   width: 100%;
   max-width: 500px; /* Maximal bredd för föräldraelementet */
   padding-top: 1rem;
@@ -50,25 +49,25 @@ header {
   border-radius: 25px;
   display: flex;
   align-items: center;
-}
 
-.search input[type="search"] {
-  width: 100%;
-  color: $secondary-color;
-  margin-right: 10px;
-  border: none;
-  border-radius: 25px;
-  outline: none;
-  padding: 12px;
-}
+  input[type="search"] {
+    width: 100%;
+    color: $secondary-color;
+    margin-right: 10px;
+    border: none;
+    border-radius: 25px;
+    outline: none;
+    padding: 12px;
+  }
 
-.search button {
-  padding: 12px;
-  background-color: $secondary-color;
-  color: white;
-  border: none;
-  border-radius: 25px;
-  cursor: pointer;
+  button {
+    padding: 12px;
+    background-color: $secondary-color;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+  }
 }
 
 /* Vid hover-effekt för knappen, valfritt */
@@ -101,7 +100,7 @@ aside {
     .order-conf {
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      justify-content: space-evenly;
       padding: 2rem;
       border-radius: 8px;
       width: 100%;

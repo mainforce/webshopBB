@@ -94,13 +94,13 @@ const productsArray = [
     category: "poster",
     images: [
       {
-        url: "assets/images/products/Veep-Poster.jpg",
+        url: "assets/images/products/veep-poster.jpg",
         width: 500,
         height: 753,
         alt: "Framed Veep poster hanging on a wall.",
       },
       {
-        url: "assets/images/products/Veep-Poster2.jpg",
+        url: "assets/images/products/veep-poster2.jpg",
         width: 500,
         height: 753,
         alt: "Close-up of Veep Poster.",
@@ -117,13 +117,13 @@ const productsArray = [
     category: "mug",
     images: [
       {
-        url: "assets/images/products/Veep-Mug.jpg",
+        url: "assets/images/products/veep-mug.jpg",
         width: 500,
         height: 753,
         alt: "Veep Mug standing on a kitchen counter.",
       },
       {
-        url: "assets/images/products/Veep-Mug2.jpg",
+        url: "assets/images/products/veep-mug2.jpg",
         width: 500,
         height: 753,
         alt: "Close-up of Veep Mug design.",
@@ -140,13 +140,13 @@ const productsArray = [
     category: "poster",
     images: [
       {
-        url: "assets/images/products/Parks-Poster.jpg",
+        url: "assets/images/products/parks-poster.jpg",
         width: 500,
         height: 753,
         alt: "Framed Parks and Rec poster hanging on a wall.",
       },
       {
-        url: "assets/images/products/Parks-Poster2.jpg",
+        url: "assets/images/products/parks-poster2.jpg",
         width: 500,
         height: 753,
         alt: "Close-up of Parks and Rec Poster.",
@@ -163,13 +163,13 @@ const productsArray = [
     category: "mug",
     images: [
       {
-        url: "assets/images/products/Parks-Mug.jpg",
+        url: "assets/images/products/parks-mug.jpg",
         width: 500,
         height: 753,
         alt: "Parks and Rec Mug standing on a kitchen counter.",
       },
       {
-        url: "assets/images/products/Parks-Mug2.jpg",
+        url: "assets/images/products/parks-mug2.jpg",
         width: 500,
         height: 500,
         alt: "Close-up of Parks and Rec Mug design.",
@@ -186,13 +186,13 @@ const productsArray = [
     category: "poster",
     images: [
       {
-        url: "assets/images/products/Poster5-Img1.jpg",
+        url: "assets/images/products/poster5-img1.jpg",
         width: 500,
         height: 753,
         alt: "Bild på Poster 5, Bild 1",
       },
       {
-        url: "assets/images/products/Poster5-Img2.jpg",
+        url: "assets/images/products/poster5-img2.jpg",
         width: 500,
         height: 753,
         alt: "Bild på Poster 5, Bild 2",
@@ -209,13 +209,13 @@ const productsArray = [
     category: "poster",
     images: [
       {
-        url: "assets/images/products/Poster6-Img1.jpg",
+        url: "assets/images/products/poster6-img1.jpg",
         width: 500,
         height: 753,
         alt: "Bild på Poster 6, Bild 1",
       },
       {
-        url: "assets/images/products/Poster6-Img2.jpg",
+        url: "assets/images/products/poster6-img2.jpg",
         width: 500,
         height: 753,
         alt: "Bild på Poster 6, Bild 2",
@@ -293,6 +293,7 @@ function generateProducts(products) {
     `;
 
     productsList.appendChild(productCard);
+    console.log("Produkter genererade.");
   });
 }
 
@@ -621,47 +622,42 @@ function totalAmountCart() {
 // ----------------- SORTERINGSFUNKTIONER ----------------
 // -------------------------------------------------------
 
-const sortName = document.getElementById("sort-name");
-const sortPrice = document.getElementById("sort-price");
-const sortRating = document.getElementById("sort-rating");
+const sortFilter = document.getElementById("sort-filter");
 
-const sortByName = (a, b) => {
-  if (a.name < b.name) return -1;
-  if (a.name > b.name) return 1;
-  return 0;
-};
+sortFilter.addEventListener("change", (event) => {
+  const sortByName = (a, b) => {
+    if (a.name < b.name) return -1;
+    if (a.name > b.name) return 1;
+    return 0;
+  };
 
-const sortByPrice = (a, b) => {
-  if (a.price < b.price) return -1;
-  if (a.price > b.price) return 1;
-  return 0;
-};
+  const sortByPrice = (a, b) => {
+    if (a.price < b.price) return -1;
+    if (a.price > b.price) return 1;
+    return 0;
+  };
 
-const sortByRating = (a, b) => {
-  if (a.rating < b.rating) return 1;
-  if (a.rating > b.rating) return -1;
-  return 0;
-};
+  const sortByRating = (a, b) => {
+    if (a.rating < b.rating) return 1;
+    if (a.rating > b.rating) return -1;
+    return 0;
+  };
 
-sortName.addEventListener("click", () => {
-  productsArray.sort(sortByName);
-  generateProducts(productsArray);
-});
+  if (event.target.value === "sort-name") {
+    console.log("Sortera efter namn (A-Ö)");
+    productsArray.sort(sortByName);
+  } else if (event.target.value === "sort-price") {
+    console.log("Sortera efter pris");
+    productsArray.sort(sortByPrice);
+  } else if (event.target.value === "sort-rating") {
+    console.log("Sortera efter betyg");
+    productsArray.sort(sortByRating);
+  }
 
-sortPrice.addEventListener("click", () => {
-  productsArray.sort(sortByPrice);
-  generateProducts(productsArray);
-});
-
-sortRating.addEventListener("click", () => {
-  productsArray.sort(sortByRating);
   generateProducts(productsArray);
 });
 
 const categorySelect = document.getElementById("category");
-const posters = document.getElementById("posters");
-const mugs = document.getElementById("mugs");
-const clothes = document.getElementById("clothes");
 
 const filterCategory = (category) => {
   if (category === "everything") return productsArray;
@@ -672,18 +668,6 @@ const displayFilteredProducts = (category) => {
   const filteredProducts = filterCategory(category);
   generateProducts(filteredProducts);
 };
-
-posters.addEventListener("click", () => {
-  displayFilteredProducts("poster");
-});
-
-mugs.addEventListener("click", () => {
-  displayFilteredProducts("mug");
-});
-
-clothes.addEventListener("click", () => {
-  displayFilteredProducts("clothes");
-});
 
 categorySelect.addEventListener("change", (event) => {
   const selectedCategory = event.target.value;

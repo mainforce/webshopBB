@@ -1,8 +1,8 @@
 .cart-item {
-  display: flex; /* Flexbox för att arrangera innehåll på en rad */
-  justify-content: space-between; /* Lämnar utrymme mellan informationen och bilden */
-  align-items: center; /* Vertikal centering av innehållet */
-  margin-top: 1rem; /* Mellanrum mellan varukorgsobjekten */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
   background-color: rgb(247, 244, 244);
   padding: 0.5rem 1rem;
   border-radius: 10px;
@@ -16,14 +16,14 @@
 }
 
 .cart-item-info {
-  flex: 1; /* Gör så att info-sektionen tar upp allt till vänster */
-  padding-right: 15px; /* Lite utrymme mellan texten och bilden */
+  flex: 1;
+  padding-right: 15px;
 }
 
 .cart-item-name,
 .cart-item-amount,
 .cart-item-price {
-  margin: 2px 0; /* Marginaler för att separera varje rad */
+  margin: 2px 0;
   font-family: $main-font;
   font-size: 1rem;
 }
@@ -33,33 +33,64 @@
   font-size: $large-fontsize;
   text-transform: uppercase;
   font-weight: 100;
-  color: $secondary-color;
+  color: black;
 }
 
 .thumb-img img {
   padding-top: 5px;
   width: auto;
-  max-height: 100px; /* Begränsa bildens höjd */
-  object-fit: cover; /* För att hålla bildens proportioner utan att sträcka den */
+  max-height: 100px;
+  object-fit: cover;
 }
 
 .cart-total {
   display: flex;
-  flex-direction: row;
-  justify-content: start;
+  flex-direction: column;
   margin: 1.2rem 0 0 8px;
 
-  h4 {
-    font-family: $secondary-font;
-    font-size: $large-fontsize;
-    font-weight: 100;
-  }
+  .summary {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
 
-  span {
-    color: $secondary-color;
-    margin-left: 10px;
-    font-family: $secondary-font;
-    font-size: $large-fontsize;
-    font-weight: 100;
+    .cart-sum {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    h4 {
+      font-family: $secondary-font;
+      font-size: $large-fontsize;
+      font-weight: 100;
+    }
+
+    span {
+      text-align: right;
+      color: $secondary-color;
+      margin-left: 10px;
+      font-family: $secondary-font;
+      font-size: $large-fontsize;
+      font-weight: 100;
+    }
+
+    .black {
+      color: black;
+    }
+
+    .total-cart {
+      padding-top: 1rem;
+    }
+  }
+}
+.discount-box {
+  border-radius: 10px;
+  margin-top: 1rem;
+  padding: 0.5rem;
+  background-color: yellow;
+  .discount {
+    color: red;
+    font-size: 1.1rem;
+    font-family: $main-font;
+    text-align: center;
   }
 }
