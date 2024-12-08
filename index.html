@@ -66,6 +66,7 @@
                 <h3>Sortera efter:</h3>
                 <div class="sort">
                     <select class="sort-filter" id="sort-filter">
+                        <option value="" disabled selected>Filtrera</option>
                         <option value="sort-name">Namn (A-Ö)</option>
                         <option value="sort-price">Pris (Lågt - Högt)</option>
                         <option value="sort-rating">Betyg</option>
@@ -76,6 +77,7 @@
                         <option value="poster">Posters</option>
                         <option value="mug">Muggar</option>
                         <option value="clothes">Kläder</option>
+                        <option value="bag">Tygpåsar</option>
                     </select>
                 </div>
             </div>
@@ -93,7 +95,7 @@
                 <div class="order-conf">
                     <form class="order-form" id="order-form" action="/submit-order" method="post">
                         <div class="timer-container" id="timer-container">
-                            <p id="timer">Tid kvar: 15:00</p>
+                            <p id="timer">Återstående tid: 15:00</p>
                         </div>
                         <!-- Förnamn -->
                         <div class="form-group">
