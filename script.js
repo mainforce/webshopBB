@@ -645,17 +645,17 @@ const sortByRating = (a, b) => {
 
 sortName.addEventListener("click", () => {
   productsArray.sort(sortByName);
-  generateProducts();
+  generateProducts(productsArray);
 });
 
 sortPrice.addEventListener("click", () => {
   productsArray.sort(sortByPrice);
-  generateProducts();
+  generateProducts(productsArray);
 });
 
 sortRating.addEventListener("click", () => {
   productsArray.sort(sortByRating);
-  generateProducts();
+  generateProducts(productsArray);
 });
 
 const categorySelect = document.getElementById("category");
