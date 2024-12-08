@@ -13,7 +13,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Host+Grotesk:ital,wght@0,300..800;1,300..800&display=swap"
         rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
 
 
 </head>
@@ -65,17 +65,17 @@
             <div class="filter">
                 <h3>Sortera efter:</h3>
                 <div class="sort">
-                    <select class="sort-btn">
-                        <option id="sort-name">Namn (A-Ö)</button>
-                        <option id="sort-price">Pris (lägst till högst)</button>
-                        <option id="sort-rating">Rating (högst till lägst)</button>
+                    <select class="sort-filter" id="sort-filter">
+                        <option value="sort-name">Namn (A-Ö)</option>
+                        <option value="sort-price">Pris (Lågt - Högt)</option>
+                        <option value="sort-rating">Betyg</option>
                     </select>
 
                     <select class="sort-category" id="category">
-                        <option id="everything" value="everything">Allt</option>
-                        <option id="posters" value="posters">Posters</option>
-                        <option id="mugs" value="mugs">Muggar</option>
-                        <option id="clothes" value="clothes">Kläder</option>
+                        <option value="everything">Allt</option>
+                        <option value="poster">Posters</option>
+                        <option value="mug">Muggar</option>
+                        <option value="clothes">Kläder</option>
                     </select>
                 </div>
             </div>

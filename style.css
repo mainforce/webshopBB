@@ -388,9 +388,11 @@ input[type=number] {
   justify-content: space-evenly;
   gap: 1rem;
 }
-.filter .sort-btn,
+.filter .sort-filter,
 .filter .sort-category {
-  background-color: #e8dbd0;
+  background-color: white;
+  padding: 0.5rem 1rem 0.3rem 0.5rem;
+  border-radius: 10px;
   border: none;
   width: 200px;
   font-family: "Bebas Neue";

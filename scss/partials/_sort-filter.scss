@@ -17,9 +17,11 @@
     gap: 1rem;
   }
 
-  .sort-btn,
+  .sort-filter,
   .sort-category {
-    background-color: $main-color;
+    background-color: white;
+    padding: 0.5rem 1rem 0.3rem 0.5rem;
+    border-radius: 10px;
     border: none;
     width: 200px;
     font-family: $secondary-font;
